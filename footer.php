@@ -92,36 +92,50 @@ $copyright      = get_field('footer_copyright_text', 'option');
 
 <!-- زر الواتساب -->
 <a href="https://wa.me/966532446558" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
-  <i class="fa-brands fa-whatsapp"></i>
+    <i class="fa-brands fa-whatsapp"></i>
 </a>
 
 <style>
-.whatsapp-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 60px;
-  height: 60px;
-  background: #25d366;
-  color: #fff;
-  font-size: 34px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  z-index: 9999;
-  box-shadow: 0 4px 12px rgba(0,0,0,.3);
-  animation: heartbeat 1.5s infinite;
-}
+    .whatsapp-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: #25d366;
+        color: #fff;
+        font-size: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
+        animation: heartbeat 1.5s infinite;
+    }
 
-@keyframes heartbeat {
-  0%   { transform: scale(1); }
-  14%  { transform: scale(1.15); }
-  28%  { transform: scale(1); }
-  42%  { transform: scale(1.15); }
-  70%  { transform: scale(1); }
-}
+    @keyframes heartbeat {
+        0% {
+            transform: scale(1);
+        }
+
+        14% {
+            transform: scale(1.15);
+        }
+
+        28% {
+            transform: scale(1);
+        }
+
+        42% {
+            transform: scale(1.15);
+        }
+
+        70% {
+            transform: scale(1);
+        }
+    }
 </style>
 
 
@@ -129,23 +143,24 @@ $copyright      = get_field('footer_copyright_text', 'option');
 <?php wp_footer(); ?>
 <script>
     const menu = document.querySelector(".menu-toggle"),
-  nav = document.querySelector(".nav");
+        nav = document.querySelector(".nav");
 
-menu?.addEventListener("click", () => {
-  const open = nav.classList.toggle("open");
+    menu?.addEventListener("click", () => {
+        const open = nav.classList.toggle("open");
 
-  menu.setAttribute("aria-expanded", open);
-  menu.textContent = open ? "إغلاق" : "القائمة";
-});
+        menu.setAttribute("aria-expanded", open);
+        menu.textContent = open ? "إغلاق" : "القائمة";
+    });
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape" && nav?.classList.contains("open")) {
-    nav.classList.remove("open");
-    menu.setAttribute("aria-expanded", "false");
-    menu.textContent = "القائمة";
-    menu.focus();
-  }
-});
-
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && nav?.classList.contains("open")) {
+            nav.classList.remove("open");
+            menu.setAttribute("aria-expanded", "false");
+            menu.textContent = "القائمة";
+            menu.focus();
+        }
+    });
 </script>
+<script src="<?php echo get_template_directory_uri() . '/assets/js/categories.js' ?>"></script>
+
 </html>

@@ -12,6 +12,8 @@
         rel="icon"
         type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23211f1d'/%3E%3Cpath d='M10 28V10h20v18H10m4-6h12m-12-6h12' fill='none' stroke='%23cea640' stroke-width='3'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/css/categories.css' ?>">
+
     <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/styles.css' ?>" />
     <script src="<?php echo get_template_directory_uri() . '/assets/app.js'; ?>" defer></script>
     <?php wp_head(); ?>
@@ -26,7 +28,7 @@
             $custom_logo_id = get_theme_mod('custom_logo');
             $footer_text    = get_bloginfo('name');
             $logo_url       = '';
-            
+
             if ($custom_logo_id) {
                 $logo_image = wp_get_attachment_image_src($custom_logo_id, 'full');
                 $logo_url   = $logo_image[0];

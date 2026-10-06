@@ -98,6 +98,34 @@ function blog_archive_redirect() {
 }
 add_action('template_redirect', 'blog_archive_redirect');
 
+// Ensure product archive templates are loaded properly
+function product_tax_template_redirect() {
+    if (is_tax('product-category')) {
+        add_filter('template_include', function($template) {
+            $term = get_queried_object();
+            if ($term && $term->taxonomy === 'product-category') {
+                if (file_exists(get_template_directory() . '/single-product-category.php')) {
+                    return get_template_directory() . '/single-product-category.php';
+                }
+            }
+            return $template;
+        });
+    }
+}
+add_action('template_redirect', 'product_tax_template_redirect');
+
+function product_archive_redirect() {
+    if (is_post_type_archive('product')) {
+        add_filter('template_include', function($template) {
+            if (file_exists(get_template_directory() . '/archive-product-category.php')) {
+                return get_template_directory() . '/archive-product-category.php';
+            }
+            return $template;
+        });
+    }
+}
+add_action('template_redirect', 'product_archive_redirect');
+
 include("inc/Theme_Style/theme-style.php");
 
 // Include Custom Walker
@@ -113,7 +141,9 @@ include("Functions/Folder-Options/world-print-options.php");
 include("Functions/Folder-Options/how-start-options.php");
 include("Functions/Folder-Options/sale-price-options.php");
 include("Functions/Folder-Options/footer-settings.php");
+include("Functions/Folder-Options/product-category-options.php");
 include("Functions/PostTypes/blog-post-type.php");
+include("Functions/PostTypes/product-category.php");
 
 // Debug: verify blog post type is registered
 if ( defined('WP_DEBUG') && WP_DEBUG ) {
