@@ -37,7 +37,7 @@ $all_categories = get_terms(array(
                                 </div>
                             <?php endif; ?>
                             <div class="jc-category-copy">
-                                <h3><?php echo esc_html($category->name); ?></h3>
+
                                 <?php if ($category->description): ?>
                                     <p><?php echo esc_html(wp_trim_words($category->description, 20)); ?></p>
                                 <?php endif; ?>

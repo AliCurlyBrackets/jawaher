@@ -52,12 +52,7 @@ $section_desc    = get_field('product_category_description', 'option');
                         <?php else: ?>
                             <div class="jc-category-icon" role="img" aria-label="<?php echo esc_attr($category->name); ?>"></div>
                         <?php endif; ?>
-                        <div class="jc-category-copy">
-                            <h3><?php echo esc_html($category->name); ?></h3>
-                            <?php if ($category->description): ?>
-                                <p><?php echo esc_html($category->description); ?></p>
-                            <?php endif; ?>
-                        </div>
+
                     </a>
                 </article>
             <?php endforeach; ?>
