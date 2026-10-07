@@ -88,3 +88,29 @@ h2 { margin: 0; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.5; }
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; }
 }
+
+
+/* ضيف الكود ده في آخر assets/css/style.css */
+.product-actions {
+    padding: 0 16px 16px;
+}
+
+.quote-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #25d366;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.quote-btn:hover,
+.quote-btn:focus-visible {
+    background: #1ebe5a;
+    transform: translateY(-1px);
+}

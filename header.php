@@ -15,7 +15,11 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/css/categories.css' ?>">
 
     <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/styles.css' ?>" />
-    <script src="<?php echo get_template_directory_uri() . '/assets/app.js'; ?>" defer></script>
+    <script src="<?php echo get_template_directory_uri() . '/assets/app.js'; ?>"></script>
+    <!-- Swiper محلي: لا يحتاج اتصالًا خارجيًا عند فتح الصفحة. -->
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/vendor/swiper-bundle.min.css' ?>">
+    <script src="<?php echo get_template_directory_uri() . '/assets/vendor/swiper-bundle.min.js' ?>"></script>
+    <script src="<?php echo get_template_directory_uri() . '/assets/js/main.js' ?>"></script>
     <?php wp_head(); ?>
     <title>الطباعة والدعاية | جواهر الشام</title>
 </head>
