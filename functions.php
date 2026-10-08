@@ -151,6 +151,7 @@ include("Functions/Folder-Options/how-start-options.php");
 include("Functions/Folder-Options/sale-price-options.php");
 include("Functions/Folder-Options/footer-settings.php");
 include("Functions/Folder-Options/product-category-options.php");
+include("Functions/Folder-Options/testimonial-options.php");
 include("Functions/PostTypes/blog-post-type.php");
 include("Functions/PostTypes/product-category.php");
 

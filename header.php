@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/vendor/swiper-bundle.min.css' ?>">
     <script src="<?php echo get_template_directory_uri() . '/assets/vendor/swiper-bundle.min.js' ?>"></script>
     <script src="<?php echo get_template_directory_uri() . '/assets/js/main.js' ?>"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
     <?php wp_head(); ?>
     <title>الطباعة والدعاية | جواهر الشام</title>
 </head>
@@ -44,9 +47,13 @@
             <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php echo esc_attr($footer_text); ?>">
                 <img class="logo" src="<?php echo esc_url($logo_url); ?>" alt="<?php echo esc_attr($footer_text); ?>" />
             </a>
-            <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">
-                القائمة
+            <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="فتح القائمة">
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+                <span class="menu-icon-bar"></span>
+                <span class="menu-close" aria-hidden="true">×</span>
             </button>
+            <div class="nav-overlay" aria-hidden="true"></div>
             <nav id="main-nav" class="nav" aria-label="القائمة الرئيسية">
                 <?php
                 wp_nav_menu(array(

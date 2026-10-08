@@ -801,27 +801,76 @@ textarea {
   }
   .header-inner {
     height: 80px;
+    align-items: center;
   }
   .logo {
     width: 175px;
   }
   .menu-toggle {
     display: block;
+    position: relative;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 5px 13px;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
-  .nav {
+  .menu-icon-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--ink);
+    margin: 4px 0;
+    transition: 0.2s;
+  }
+  .menu-close {
     display: none;
-    position: absolute;
-    top: 80px;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  .nav-overlay.active {
+    display: block;
+  }
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
     background: #faf8f3;
-    padding: 20px 5%;
-    border-bottom: 1px solid var(--line);
+    padding: 80px 20px 40px;
     flex-direction: column;
     align-items: stretch;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
   }
   .nav.open {
-    display: flex;
+    right: 0;
+  }
+  .nav.open .menu-icon-bar {
+    display: none;
+  }
+  .nav.open .menu-close {
+    display: block;
   }
   .hero {
     min-height: 690px;
@@ -1234,11 +1283,6 @@ textarea {
   .luxury-theme .header-inner {
     height: 76px;
   }
-  .luxury-theme .nav {
-    top: 76px;
-    background: #211f1d;
-    color: #fff;
-  }
   .luxury-theme .menu-toggle {
     color: #e6c069;
     border-color: #716039;
@@ -1325,4 +1369,131 @@ textarea {
 
 .step-icon img{
   max-width: 30px !important;
+}
+
+
+/* ===== Mobile Sidebar Menu ===== */
+@media (max-width: 700px) {
+  /* أهم سطر: من غيره الـ fixed بيتحبس جوه الهيدر */
+  .site-header {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* اللوجو والأيقونة في صف واحد */
+  .site-header .header-inner {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+  .site-header .logo {
+    width: 160px;
+  }
+
+  /* زرار الهامبرجر */
+  .menu-toggle {
+    display: inline-flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    flex-shrink: 0;
+    background: none;
+    border: 1px solid #716039;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1002;
+  }
+  .menu-toggle .menu-icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    margin: 0;
+    background: #e6c069;
+    transition: transform 0.3s, opacity 0.2s;
+  }
+  .menu-toggle .menu-close {
+    display: none !important;
+  }
+
+  /* الأيقونة تتحول لـ X وهي مفتوحة */
+  body.menu-open .menu-icon-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  body.menu-open .menu-icon-bar:nth-child(2) {
+    opacity: 0;
+  }
+  body.menu-open .menu-icon-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* السايد بار */
+  .site-header .nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    height: 100dvh;
+    padding: 95px 24px 30px;
+    background: #1c1b19;
+    border-left: 1px solid #ba9134;
+    box-shadow: -8px 0 25px rgba(0, 0, 0, 0.35);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1001;
+  }
+  body.menu-open .site-header .nav {
+    transform: translateX(0);
+  }
+
+  /* الروابط تحت بعض */
+  #menu-main-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
+  #menu-main-menu li a {
+    display: block;
+    padding: 14px 4px;
+    font-size: 17px;
+    color: #fff;
+    border-bottom: 1px solid #3a3426;
+  }
+  #menu-main-menu li a.active,
+  #menu-main-menu li.current-menu-item > a {
+    color: #e4bd5c;
+  }
+
+  /* الخلفية الغامقة */
+  .nav-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+  }
+  body.menu-open .nav-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  body.menu-open {
+    overflow: hidden;
+  }
 }

@@ -456,13 +456,85 @@
 // const serviceIndex = new URLSearchParams(location.search).get("service");
 // if (form && serviceIndex !== null) {
 //   const labels = [
-//     "مطبوعات ورقية",
-//     "إكريليك",
-//     "رول أب وبوب أب",
-//     "علب وأكياس",
-//     "مطبوعات ورقية",
-//     "لوحات وبنرات",
+//   "مطبوعات ورقية",
+//   "إكريليك",
+//   "رول أب وبوب أب",
+//   "علب وأكياس",
+//   "مطبوعات ورقية",
+//   "لوحات وبنرات",
 //   ];
 //   const selected = labels[Number(serviceIndex)];
 //   if (selected) form.querySelector("select").value = selected;
 // }
+
+/* ===== Mobile menu toggle (sidebar) ===== */
+(function () {
+  "use strict";
+
+  var menuBtn = document.querySelector(".menu-toggle");
+  var nav = document.querySelector(".nav");
+  var overlay = document.querySelector(".nav-overlay");
+  var closeIcon = menuBtn ? menuBtn.querySelector(".menu-close") : null;
+  var iconBars = menuBtn ? menuBtn.querySelectorAll(".menu-icon-bar") : null;
+
+  if (!menuBtn || !nav) return;
+
+  function isNavOpen() {
+    return nav.classList.contains("open");
+  }
+
+  function openNav() {
+    nav.classList.add("open");
+    menuBtn.setAttribute("aria-expanded", "true");
+    menuBtn.setAttribute("aria-label", "إغلاق القائمة");
+    if (overlay) overlay.classList.add("active");
+    if (closeIcon) closeIcon.style.display = "block";
+    if (iconBars) {
+      iconBars.forEach(function (bar) { bar.style.display = "none"; });
+    }
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeNav() {
+    nav.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.setAttribute("aria-label", "فتح القائمة");
+    if (overlay) overlay.classList.remove("active");
+    if (closeIcon) closeIcon.style.display = "none";
+    if (iconBars) {
+      iconBars.forEach(function (bar) { bar.style.display = "block"; });
+    }
+    document.body.style.overflow = "";
+  }
+
+  function toggleNav() {
+    if (isNavOpen()) {
+      closeNav();
+    } else {
+      openNav();
+    }
+  }
+
+  menuBtn.addEventListener("click", toggleNav);
+
+  /* إغلاق عند الضغط على الـ overlay */
+  if (overlay) {
+    overlay.addEventListener("click", closeNav);
+  }
+
+  /* إغلاق بزر Escape */
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && isNavOpen()) {
+      closeNav();
+      menuBtn.focus();
+    }
+  });
+
+  /* إغلاق عند اختيار رابط من القائمة (بعد التنقل) */
+  nav.addEventListener("click", function (e) {
+    var link = e.target.closest("a");
+    if (link && isNavOpen()) {
+      closeNav();
+    }
+  });
+})();

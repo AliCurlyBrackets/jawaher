@@ -8,7 +8,7 @@
  */
 
 /* ---------------- الباك اند ---------------- */
-$products_limit = 10; // عدد المنتجات في كل تصنيف
+$products_limit = -1; // عدد المنتجات في كل تصنيف
 
 $terms = get_terms(array(
     'taxonomy'   => 'product-category',
