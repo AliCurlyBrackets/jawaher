@@ -39,8 +39,22 @@
     <title>الطباعة والدعاية | جواهر الشام</title>
 </head>
 
-<body class="luxury-theme">
+    <body class="luxury-theme">
     <a class="skip-link" href="#main">انتقل إلى المحتوى</a>
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="top-bar-left">
+                <a href="tel:<?php echo esc_attr(get_theme_mod('top_bar_phone', '0123456789')); ?>">
+                    <?php echo esc_html(get_theme_mod('top_bar_phone', '0123 456 7890')); ?>
+                </a>
+            </div>
+            <div class="top-bar-right">
+                <a href="mailto:<?php echo esc_attr(get_theme_mod('top_bar_email', 'info@example.com')); ?>">
+                    <?php echo esc_html(get_theme_mod('top_bar_email', 'info@example.com')); ?>
+                </a>
+            </div>
+        </div>
+    </div>
     <header class="site-header">
         <div class="container header-inner">
             <?php

@@ -78,6 +78,34 @@ function register_theme_menus()
 }
 add_action('after_setup_theme', 'register_theme_menus');
 
+// Top Bar Customizer Settings
+function top_bar_customize_register($wp_customize) {
+    $wp_customize->add_section('top_bar_section', array(
+        'title'    => 'Top Bar Settings',
+        'priority' => 30,
+    ));
+
+    $wp_customize->add_setting('top_bar_phone', array(
+        'default'   => '0123 456 7890',
+        'transport' => 'refresh',
+    ));
+    $wp_customize->add_control('top_bar_phone', array(
+        'label'   => 'Phone Number',
+        'section' => 'top_bar_section',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('top_bar_email', array(
+        'default'   => 'info@example.com',
+        'transport' => 'refresh',
+    ));
+    $wp_customize->add_control('top_bar_email', array(
+        'label'   => 'Email Address',
+        'section' => 'top_bar_section',
+        'type'    => 'text',
+    ));
+}
+
 // Ensure blog templates are loaded properly
 function blog_template_redirect()
 {
@@ -135,6 +163,7 @@ function product_archive_redirect()
 }
 add_action('template_redirect', 'product_archive_redirect');
 
+add_action('customize_register', 'top_bar_customize_register');
 include("inc/Theme_Style/theme-style.php");
 
 // Include Custom Walker
