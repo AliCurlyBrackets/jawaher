@@ -12,14 +12,26 @@
         rel="icon"
         type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%23211f1d'/%3E%3Cpath d='M10 28V10h20v18H10m4-6h12m-12-6h12' fill='none' stroke='%23cea640' stroke-width='3'/%3E%3C/svg%3E" />
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/css/categories.css' ?>">
 
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/styles.css' ?>" />
-    <script src="<?php echo get_template_directory_uri() . '/assets/app.js'; ?>"></script>
+    <?php
+    // رقم النسخة تلقائي حسب آخر تعديل للملف
+    $jw_dir = get_template_directory();
+    $jw_uri = get_template_directory_uri();
+    $jw_ver = function ($path) use ($jw_dir) {
+        $file = $jw_dir . $path;
+        return file_exists($file) ? filemtime($file) : time();
+    };
+    ?>
+
+    <link rel="stylesheet" href="<?php echo $jw_uri . '/assets/css/categories.css?v=' . $jw_ver('/assets/css/categories.css'); ?>">
+    <link rel="stylesheet" href="<?php echo $jw_uri . '/assets/styles.css?v=' . $jw_ver('/assets/styles.css'); ?>" />
+    <script src="<?php echo $jw_uri . '/assets/app.js?v=' . $jw_ver('/assets/app.js'); ?>"></script>
+
     <!-- Swiper محلي: لا يحتاج اتصالًا خارجيًا عند فتح الصفحة. -->
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri() . '/assets/vendor/swiper-bundle.min.css' ?>">
-    <script src="<?php echo get_template_directory_uri() . '/assets/vendor/swiper-bundle.min.js' ?>"></script>
-    <script src="<?php echo get_template_directory_uri() . '/assets/js/main.js' ?>"></script>
+    <link rel="stylesheet" href="<?php echo $jw_uri . '/assets/vendor/swiper-bundle.min.css?v=' . $jw_ver('/assets/vendor/swiper-bundle.min.css'); ?>">
+    <script src="<?php echo $jw_uri . '/assets/vendor/swiper-bundle.min.js?v=' . $jw_ver('/assets/vendor/swiper-bundle.min.js'); ?>"></script>
+    <script src="<?php echo $jw_uri . '/assets/js/main.js?v=' . $jw_ver('/assets/js/main.js'); ?>"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
